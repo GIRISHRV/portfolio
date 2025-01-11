@@ -174,14 +174,15 @@ h2::after {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2rem;
+    gap: 0.5rem;
+    
 }
 
 .work__list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     height: auto;
     width: auto;
     flex: 1;
@@ -205,9 +206,11 @@ h2::after {
     transition: transform 0.3s ease; /* Add transition for hover effect */
     text-decoration: none; /* Remove underline from links */
     color: inherit; /* Inherit text color */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
 }
 
 .work-item:hover {
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
     transform: scale(1.05); /* Scale up the item on hover */
 }
 
@@ -219,6 +222,7 @@ h2::after {
 
 .home__social-icon:hover {
     color: var(--hero-title-color); /* Change color on hover */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
     transform: scale(1.1); /* Slightly increase size on hover */
 }
 
@@ -276,9 +280,11 @@ h2::after {
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease; /* Add transition for hover effect */
+    
 }
 
 .skill:hover, .certification__item:hover, .education__item:hover {
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
     transform: scale(1.05); /* Scale up the item on hover */
 }
 
