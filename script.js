@@ -34,7 +34,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
     const navbarHeight = document.querySelector('.navbar').offsetHeight;
+    // Initialize Bootstrap tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+    // Hide tooltips on click
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(element => {
+        element.addEventListener('click', () => {
+            const tooltip = bootstrap.Tooltip.getInstance(element);
+            if (tooltip) {
+                tooltip.hide();
+            }
+        });
+    });
 
+    // Hide tooltips on visibility change
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            tooltipList.forEach(tooltip => tooltip.hide());
+        }
+    });
     // Hide spinner once the page is fully loaded
     window.addEventListener('load', function () {
         const spinner = document.getElementById('spinner');
