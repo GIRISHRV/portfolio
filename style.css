@@ -524,3 +524,7 @@ body.loaded .spinner-overlay {
     color: #fff; /* Change text color on hover */
 }
 
+/* Ensure consistent transition properties for other elements */
+.navbar, .mode-switch, .home__title, .home__social-icon, .work-item, .skill, .certification__item, .education__item {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
