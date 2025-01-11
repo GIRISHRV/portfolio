@@ -67,6 +67,14 @@ document.addEventListener('DOMContentLoaded', function () {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
+    // Hide the tooltip on click
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (tooltipTriggerEl) {
+        tooltipTriggerEl.addEventListener('click', function () {
+            const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
+            tooltip.hide();
+        });
+    });
+
     // Hide the spinner once the page is fully loaded and at least 1.5 seconds have passed
     window.addEventListener('load', function () {
         setTimeout(function () {
