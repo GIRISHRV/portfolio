@@ -13,7 +13,6 @@ function setTheme(mode = 'auto') {
     document.documentElement.setAttribute('data-bs-theme', modeChosen);
     document.querySelectorAll('.mode-switch .btn').forEach(e => e.classList.remove('text-body'));
     document.getElementById(modeChosen).classList.add('text-body');
-
 }
 
 setTheme();
@@ -34,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (index >= 0) {
             navLinks[index].classList.add('active');
         }
-        
     }
 
     changeActiveLink();
@@ -46,12 +44,15 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetId = this.getAttribute('href').substring(1);
             const targetSection = document.getElementById(targetId);
 
-
-
             window.scrollTo({
                 top: targetSection.offsetTop - navbarHeight, // Adjust for fixed navbar height
                 behavior: 'smooth'
             });
         });
+    });
+
+    // Hide the spinner once the page is fully loaded
+    window.addEventListener('load', function () {
+        document.body.classList.add('loaded');
     });
 });

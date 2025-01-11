@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Spinner -->
+    <div id="spinner" class="spinner-overlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg border-bottom border-4">
         <div class="container-fluid">
@@ -60,41 +67,41 @@
         </div>
     </section>
 
-        <!-- Work Section -->
-        <section id="work" class="work py-5">
-            <div class="container text-center">
-                <h2>Work</h2>
-                <div class="work__about">
-                    <p>I’m Girish R V, a second-year Computer Science undergraduate at Jain (Deemed-to-be University). With a strong foundation in programming and an ever-growing curiosity for technology, I’m on a journey to innovate and make a positive impact in the field of software engineering. Passionate about leveraging <span class="highlight">AI</span>, <span class="highlight">machine learning</span>, and <span class="highlight">APIs</span> to solve real-world problems. Creativity and precision in developing <span class='highlight'>intuitive</span>, <span class="highlight">user-friendly</span> interfaces and <span class='highlight'>robust</span> backend systems.</p>
-                </div>
-                <div class="work__list flex-container">
-                    <a href="https://songreco.vercel.app/" class="work-item">
-                        <div class="work__icon-background">
-                            <i class="fas fa-project-diagram work__icon"></i>
-                        </div>
-                        <div class="work__data">
-                            <span class="work__name">Tunesearch</span>
-                            <span class="work__date">Dec 2024 - Present</span>
-                            <span class="work__description">TuneSearch is a web application designed to provide personalized music recommendations based on user-uploaded playlists or Spotify Public Playlist URLs. The application leverages AI and various APIs to generate recommendations and enrich metadata for each track. It features a user-friendly interface built with HTML, CSS, and JavaScript, and a backend powered by Flask.
-                            </span>
-                        </div>
-                        <div class="skill__bar skill__python"></div>
-                    </a>
-                    <a href="https://www.jainuniversity.ac.in/" class="work-item">
-                        <div class="work__icon-background">
-                            <i class="fas fa-school work__icon"></i>
-                        </div>
-                        <div class="work__data">
-                            <span class="work__name">Jain (Deemed to be University)</span>
-                            <span class="work__date">2023 - 2027</span>
-                            <span class="work__description">I'm currently a 2nd-year student at Jain University, pursuing a degree in Software Engineering (SE). I am passionate about web development, working on projects that utilize modern web technologies like HTML, CSS, JavaScript, and Bootstrap. Specialization: SE (Software Engineering)
-                            </span>
-                        </div>
-                        <div class="skill__bar skill__python"></div>
-                    </a>
-                </div>
+    <!-- Work Section -->
+    <section id="work" class="work py-5">
+        <div class="container text-center">
+            <h2>Work</h2>
+            <div class="work__about">
+                <p>I’m Girish R V, a second-year Computer Science undergraduate at Jain (Deemed-to-be University). With a strong foundation in programming and an ever-growing curiosity for technology, I’m on a journey to innovate and make a positive impact in the field of software engineering. Passionate about leveraging <span class="highlight">AI</span>, <span class="highlight">machine learning</span>, and <span class="highlight">APIs</span> to solve real-world problems. Creativity and precision in developing <span class='highlight'>intuitive</span>, <span class="highlight">user-friendly</span> interfaces and <span class='highlight'>robust</span> backend systems.</p>
             </div>
-        </section>
+            <div class="work__list flex-container">
+                <a href="https://example.com/tunesearch" class="work-item">
+                    <div class="work__icon-background">
+                        <i class="fas fa-project-diagram work__icon"></i>
+                    </div>
+                    <div class="work__data">
+                        <span class="work__name">Tunesearch</span>
+                        <span class="work__date">Dec 2024 - Present</span>
+                        <span class="work__description">TuneSearch is a web application designed to provide personalized music recommendations based on user-uploaded playlists or Spotify Public Playlist URLs. The application leverages AI and various APIs to generate recommendations and enrich metadata for each track. It features a user-friendly interface built with HTML, CSS, and JavaScript, and a backend powered by Flask.
+                        </span>
+                    </div>
+                    <div class="skill__bar skill__python"></div>
+                </a>
+                <a href="https://example.com/jain-university" class="work-item">
+                    <div class="work__icon-background">
+                        <i class="fas fa-school work__icon"></i>
+                    </div>
+                    <div class="work__data">
+                        <span class="work__name">Jain (Deemed to be University)</span>
+                        <span class="work__date">2023 - 2027</span>
+                        <span class="work__description">I'm currently a 2nd-year student at Jain University, pursuing a degree in Software Engineering (SE). I am passionate about web development, working on projects that utilize modern web technologies like HTML, CSS, JavaScript, and Bootstrap. Specialization: SE (Software Engineering)
+                        </span>
+                    </div>
+                    <div class="skill__bar skill__python"></div>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Skills Section -->
     <section id="skills" class="skills py-5">
