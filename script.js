@@ -61,10 +61,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Initialize Bootstrap tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
     // Hide the spinner once the page is fully loaded and at least 1.5 seconds have passed
     window.addEventListener('load', function () {
         setTimeout(function () {
             document.body.classList.add('loaded');
-        }, 800); // 1.5 seconds delay
+        }, 1500); // 1.5 seconds delay
     });
 });
