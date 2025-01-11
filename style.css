@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
-
+/* Light theme */
 :root {
     --background-color: #f8f9fa;
     --text-color: #212529;
@@ -11,8 +10,10 @@
     --pill-background: #e0e0e0; /* Background color for pills */
     --pill-bar-color: #007bff; /* Color for pill bar */
     --icon-color: #007bff; /* Color for icons */
+    --navbar-shadow-color: rgba(0, 123, 255, 0.5); /* Glowing shadow color for light theme */
 }
 
+/* Dark theme */
 [data-bs-theme="dark"] {
     --background-color: #121212; /* Darker background for better contrast */
     --text-color: #e0e0e0; /* Light grey text for better readability */
@@ -24,6 +25,7 @@
     --pill-background: #333333; /* Background color for pills */
     --pill-bar-color: #ff6347; /* Color for pill bar */
     --icon-color: #ff6347; /* Color for icons */
+    --navbar-shadow-color: rgba(255, 99, 71, 0.5); /* Glowing shadow color for dark theme */
 }
 
 html, body {
@@ -32,7 +34,6 @@ html, body {
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
-
 }
 
 .mode-switch {
@@ -42,9 +43,13 @@ html, body {
     padding: 0.5rem; /* Add padding around the buttons */
     display: flex; /* Use flexbox to contain the buttons */
     gap: 0.5rem; /* Add space between the buttons */
-
+    box-shadow: 0 0 10px var(--navbar-shadow-color); /* Add glowing shadow */
+    border: 2px solid var(--underline-color)!important; /* Set border color to accent color */
 }
 
+.bi {
+    text-shadow: 0 0 10px var(--text-color); /* Add glowing shadow to underline */
+}
 .navbar {
     background-color: var(--navbar-background);
     padding: 0.6rem 1rem; /* Set padding for a smaller navbar */
@@ -52,6 +57,8 @@ html, body {
     top: 0;
     width: 100%;
     z-index: 1000; /* Ensure the navbar is above other content */
+    box-shadow: 0 0 10px var(--navbar-shadow-color); /* Add glowing shadow */
+    border-bottom: 2px solid var(--underline-color)!important; /* Set border color to accent color */ 
 }
 
 .navbar-brand {
@@ -76,12 +83,15 @@ html, body {
     position: absolute;
     bottom: -5px;
     left: 0;
+    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
 }
 
 .nav-link.active::after,
 .nav-link:hover::after {
     width: 100%;
 }
+
+
 
 .hero, .skills, .work {
     background-color: var(--background-color);
@@ -120,11 +130,9 @@ html, body {
 
 .home__title-color {
     color: var(--hero-title-color);
+    text-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
 }
 
-.home__data {
-    margin-bottom: 2rem;
-}
 
 .home__social {
     display: flex;
@@ -135,6 +143,7 @@ html, body {
 .home__social-icon {
     font-size: 2.5rem; /* Increase font size for the social icons */
     color: var(--text-color);
+    text-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
 }
 
 h2 {
@@ -155,6 +164,7 @@ h2::after {
     position: absolute;
     bottom: -5px;
     left: 0;
+    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
 }
 
 .work__about {
@@ -168,14 +178,46 @@ h2::after {
 
 .highlight {
     color: var(--hero-title-color);
+    text-shadow: 0 0 4px var(--underline-color); /* Add glowing shadow to underline */
+    position: relative;
 }
 
-.skills__list, .certifications__list, .education__list {
+.skills__list{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 1rem;
     
+}
+
+.skills__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem; /* Add space between the skill items */
+}
+
+.skill {
+    background-color: var(--pill-background);
+    padding: 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    width: 200px; /* Set a fixed width */
+    height: 100px; /* Set a fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease; /* Add transition for hover effect */
+}
+
+.skill:hover {
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
+    transform: scale(1.05); /* Scale up the item on hover */
 }
 
 .work__list {
@@ -212,12 +254,12 @@ h2::after {
 .work-item:hover {
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
     transform: scale(1.05); /* Scale up the item on hover */
+    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
 }
 
 .home__social-icon {
     font-size: 2.5rem; /* Increase font size for the social icons */
     color: var(--text-color);
-
 }
 
 .home__social-icon:hover {
@@ -238,6 +280,7 @@ h2::after {
 .work__icon {
     font-size: 2rem; /* Adjust icon size as needed */
     color: var(--icon-color); /* Use a variable or specific color */
+    text-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
 }
 
 .work__data {
@@ -264,7 +307,7 @@ h2::after {
     line-height: 1.5; /* Increase line height for better readability */
 }
 
-.skill, .certification__item, .education__item {
+.skill{
     background-color: var(--pill-background);
     padding: 1rem;
     border-radius: 1rem;
@@ -280,15 +323,15 @@ h2::after {
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease; /* Add transition for hover effect */
-    
 }
 
-.skill:hover, .certification__item:hover, .education__item:hover {
+.skill:hover{
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
     transform: scale(1.05); /* Scale up the item on hover */
+    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
 }
 
-.skill__icon-background, .certification__icon-background, .education__icon-background {
+.skill__icon-background{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -297,24 +340,25 @@ h2::after {
     margin-right: 1rem;
 }
 
-.skill__icon, .certification__icon, .education__icon {
+.skill__icon{
     font-size: 2rem; /* Adjust icon size as needed */
     color: var(--icon-color); /* Use a variable or specific color */
+    text-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
 }
 
-.skill__data, .certification__data, .education__data {
+.skill__data{
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
 }
 
-.skill__name, .certification__name, .education__name {
+.skill__name{
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
 }
 
-.skill__percentage, .certification__issuer, .education__duration {
+.skill__percentage{
     font-size: 0.8rem;
     font-family: 'Roboto', sans-serif;
     margin-top: 0.5rem;
@@ -328,49 +372,7 @@ h2::after {
     position: absolute;
     bottom: 0;
     left: 0;
-}
-
-.project__item {
-    background-color: var(--pill-background);
-    padding: 1rem;
-    border-radius: 1rem;
-    text-align: center;
-    font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
-    margin-bottom: 1rem;
-    position: relative;
-    overflow: hidden;
-    width: 200px; /* Set a fixed width */
-    height: 100px; /* Set a fixed height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.project__data {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.project__name {
-    font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
-}
-
-.project__duration {
-    font-size: 0.8rem;
-    font-family: 'Roboto', sans-serif;
-    margin-top: 0.5rem;
-}
-
-.project-image {
-    max-width: 80%; /* Reduce the size of the image */
-    height: auto;
-    margin-top: 1rem;
-    object-fit: scale-down;
+    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
 }
 
 .card {
@@ -420,14 +422,10 @@ h2::after {
     }
 }
 
-.section {
-    animation: fadeIn 0.5s ease-in-out;
+.navbar-toggler {
+    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
+   
 }
-
-.section-exit {
-    animation: fadeOut 0.5s ease-in-out;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .home__title {
@@ -436,7 +434,6 @@ h2::after {
 
     .home__social-icon {
         font-size: 2rem;
-        
     }
 
     h2 {
@@ -451,15 +448,11 @@ h2::after {
         width: 100%; /* Make work items full width on mobile */
     }
 
-    .skill, .certification__item, .education__item {
+    .skill{
         width: 100%; /* Make skill items full width on mobile */
         height: auto; /* Allow height to adjust based on content */
     }
 }
-
-
-
-
 
 @media (max-width: 768px) {
     .navbar-nav {
@@ -471,7 +464,7 @@ h2::after {
         text-align: center;
         width: 100%; /* Make each nav item take full width */
     }
-
+    
     .mode-switch {
         text-align: center;
         display: flex;
@@ -479,11 +472,20 @@ h2::after {
         align-items: center; /* Center the theme switching buttons */
         width: 100%; /* Make the mode switch take full width */
         margin: 1rem 0; /* Add some space above and below the mode switch */
+        box-shadow: 0 0 10px var(--navbar-shadow-color); /* Add glowing shadow */
+        border: 2px solid var(--underline-color)!important; /* Set border color to accent color */
     }
-
+    
     .mode-switch .btn {
         text-align: center;
         margin: 0 0.5rem; /* Add some space between the buttons */
+    }
+}
+
+@media (max-width: 768px) {
+    .skill {
+        width: 100%; /* Make skill items full width on mobile */
+        height: auto; /* Allow height to adjust based on content */
     }
 }
 
@@ -522,14 +524,14 @@ body.loaded .spinner-overlay {
     text-decoration: none;
     font-size: 1rem;
     margin: 0.5rem 0;
-
 }
 
 .pill-link:hover {
     background-color: var(--pill-bar-color);
     color: #fff; /* Change text color on hover */
+    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
 }
 
-.navbar, .mode-switch, .home__title, .home__social-icon, .work-item, .skill, .certification__item, .education__item, .pill-link{
+.navbar, .mode-switch, .home__title, .home__social-icon, .work-item, .skill, .certification__item, .pill-link {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
