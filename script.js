@@ -76,18 +76,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }, observerOptions);
 
     sections.forEach(section => observer.observe(section));
-
-    // Smooth scrolling for all anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-
-            window.scrollTo({
-                top: targetSection.offsetTop - navbarHeight, // Adjust for fixed navbar height
-                behavior: 'smooth'
-            });
-        });
-    });
 });
