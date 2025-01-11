@@ -1,0 +1,484 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    --background-color: #f8f9fa;
+    --text-color: #212529;
+    --mode-switch-background: #ffffff;
+    --mode-switch-border: #dee2e6;
+    --navbar-background: #ffffff;
+    --hero-title-color: #007bff; /* Custom color for hero title */
+    --underline-color: #007bff; /* Default underline color */
+    --pill-background: #e0e0e0; /* Background color for pills */
+    --pill-bar-color: #007bff; /* Color for pill bar */
+    --icon-color: #007bff; /* Color for icons */
+}
+
+[data-bs-theme="dark"] {
+    --background-color: #121212; /* Darker background for better contrast */
+    --text-color: #e0e0e0; /* Light grey text for better readability */
+    --mode-switch-background: #1f1f1f; /* Darker switch background */
+    --mode-switch-border: #333333; /* Darker border for switch */
+    --navbar-background: #1f1f1f; /* Darker navbar background */
+    --hero-title-color: #ff6347; /* Custom color for hero title */
+    --underline-color: #ff6347; /* Default underline color */
+    --pill-background: #333333; /* Background color for pills */
+    --pill-bar-color: #ff6347; /* Color for pill bar */
+    --icon-color: #ff6347; /* Color for icons */
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mode-switch {
+    background-color: var(--mode-switch-background);
+    border: 1px solid var(--mode-switch-border);
+    border-radius: 0.25rem;
+    padding: 0.5rem; /* Add padding around the buttons */
+    display: flex; /* Use flexbox to contain the buttons */
+    gap: 0.5rem; /* Add space between the buttons */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar {
+    background-color: var(--navbar-background);
+    padding: 0.6rem 1rem; /* Set padding for a smaller navbar */
+    transition: background-color 0.3s ease;
+    position: fixed; /* Make the navbar fixed at the top */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the navbar is above other content */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Adjust font size for the brand */
+    font-family: 'Playfair Display', serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    font-size: 1rem; /* Adjust font size for the links */
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--underline-color);
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.nav-link.active::after,
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.hero, .skills, .work {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh; /* Make each section take up the full height of the viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 0;
+    padding-top: 8rem; /* Add padding to account for the fixed navbar */
+    text-align: center;
+}
+
+.work {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh; /* Make each section take up the full height of the viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 0;
+    padding-top: 8rem; /* Add padding to account for the fixed navbar */
+    text-align: center;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.home__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; /* Increase font size for the hero title */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.home__title-color {
+    color: var(--hero-title-color);
+}
+
+.home__data {
+    margin-bottom: 2rem;
+}
+
+.home__social {
+    display: flex;
+    justify-content: center; /* Center the social icons */
+    gap: 1rem;
+}
+
+.home__social-icon {
+    font-size: 2.5rem; /* Increase font size for the social icons */
+    color: var(--text-color);
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--underline-color);
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.work__about {
+    margin-bottom: 2rem;
+}
+
+.work__about p {
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.highlight {
+    color: var(--hero-title-color);
+}
+
+.skills__list, .certifications__list, .education__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.work__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    height: auto;
+    width: auto;
+    flex: 1;
+}
+
+.work-item {
+    background-color: var(--pill-background);
+    padding: 1.5rem; /* Increase padding for better spacing */
+    border-radius: 1rem;
+    text-align: left; /* Align text to the left */
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    width: calc(50% - 2rem); /* Adjust width to fit two items per row */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    height: auto; /* Allow height to adjust based on content */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    transition: transform 0.3s ease; /* Add transition for hover effect */
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color */
+}
+
+.work-item:hover {
+    transform: scale(1.05); /* Scale up the item on hover */
+}
+
+.home__social-icon {
+    font-size: 2.5rem; /* Increase font size for the social icons */
+    color: var(--text-color);
+    transition: color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
+}
+
+.home__social-icon:hover {
+    color: var(--hero-title-color); /* Change color on hover */
+    transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+.work__icon-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    margin-bottom: 1rem; /* Add space below the icon */
+}
+
+.work__icon {
+    font-size: 2rem; /* Adjust icon size as needed */
+    color: var(--icon-color); /* Use a variable or specific color */
+}
+
+.work__data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text to the left */
+}
+
+.work__name {
+    font-size: 1.2rem; /* Increase font size for the name */
+    font-weight: bold; /* Make the name bold */
+    margin-bottom: 0.5rem; /* Add space below the name */
+}
+
+.work__date {
+    font-size: 1rem; /* Adjust font size as needed */
+    font-weight: normal; /* Adjust font weight as needed */
+    margin-bottom: 0.5rem; /* Add space below the date */
+    display: block; /* Ensure the date is displayed on a separate line */
+}
+
+.work__description {
+    font-size: 1rem; /* Adjust font size for the description */
+    line-height: 1.5; /* Increase line height for better readability */
+}
+
+.skill, .certification__item, .education__item {
+    background-color: var(--pill-background);
+    padding: 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    width: 200px; /* Set a fixed width */
+    height: 100px; /* Set a fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease; /* Add transition for hover effect */
+}
+
+.skill:hover, .certification__item:hover, .education__item:hover {
+    transform: scale(1.05); /* Scale up the item on hover */
+}
+
+.skill__icon-background, .certification__icon-background, .education__icon-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    margin-right: 1rem;
+}
+
+.skill__icon, .certification__icon, .education__icon {
+    font-size: 2rem; /* Adjust icon size as needed */
+    color: var(--icon-color); /* Use a variable or specific color */
+}
+
+.skill__data, .certification__data, .education__data {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.skill__name, .certification__name, .education__name {
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.skill__percentage, .certification__issuer, .education__duration {
+    font-size: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 0.5rem;
+}
+
+.skill__bar {
+    width: 100%;
+    height: 4px;
+    background: var(--pill-bar-color);
+    margin-top: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.project__item {
+    background-color: var(--pill-background);
+    padding: 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    width: 200px; /* Set a fixed width */
+    height: 100px; /* Set a fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project__data {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project__name {
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.project__duration {
+    font-size: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 0.5rem;
+}
+
+.project-image {
+    max-width: 80%; /* Reduce the size of the image */
+    height: auto;
+    margin-top: 1rem;
+    object-fit: scale-down;
+}
+
+.card {
+    transition: transform 0.3s ease;
+    overflow: hidden; /* Ensure the image is cropped */
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+}
+
+.card-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crop the image to fit the card */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.section {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.section-exit {
+    animation: fadeOut 0.5s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .home__title {
+        font-size: 2.5rem;
+    }
+
+    .home__social-icon {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .work__list {
+        flex-direction: column; /* Stack work items vertically on mobile */
+    }
+
+    .work-item {
+        width: 100%; /* Make work items full width on mobile */
+    }
+
+    .skill, .certification__item, .education__item {
+        width: 100%; /* Make skill items full width on mobile */
+        height: auto; /* Allow height to adjust based on content */
+    }
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center; /* Center the navbar entries */
+        width: 100%; /* Make the navbar entries take full width */
+    }
+
+    .navbar-nav .nav-item {
+        text-align: center;
+        width: 100%; /* Make each nav item take full width */
+    }
+
+    .mode-switch {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Center the theme switching buttons */
+        width: 100%; /* Make the mode switch take full width */
+        margin: 1rem 0; /* Add some space above and below the mode switch */
+    }
+
+    .mode-switch .btn {
+        text-align: center;
+        margin: 0 0.5rem; /* Add some space between the buttons */
+    }
+}
+
+
