@@ -13,6 +13,16 @@ function setTheme(mode = 'auto') {
     document.documentElement.setAttribute('data-bs-theme', modeChosen);
     document.querySelectorAll('.mode-switch .btn').forEach(e => e.classList.remove('text-body'));
     document.getElementById(modeChosen).classList.add('text-body');
+
+    // Update spinner color based on theme
+    const spinner = document.querySelector('.spinner-border');
+    if (modeChosen === 'dark') {
+        spinner.classList.remove('text-primary');
+        spinner.classList.add('text-light');
+    } else {
+        spinner.classList.remove('text-light');
+        spinner.classList.add('text-primary');
+    }
 }
 
 setTheme();
@@ -51,8 +61,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Hide the spinner once the page is fully loaded
+    // Hide the spinner once the page is fully loaded and at least 1.5 seconds have passed
     window.addEventListener('load', function () {
-        document.body.classList.add('loaded');
+        setTimeout(function () {
+            document.body.classList.add('loaded');
+        }, 800); // 1.5 seconds delay
     });
 });

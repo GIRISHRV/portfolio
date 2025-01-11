@@ -496,9 +496,13 @@ h2::after {
     z-index: 9999; /* Ensure the spinner is above all other content */
 }
 
+/* Dark mode spinner */
+[data-bs-theme="dark"] .spinner-overlay {
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+}
+
 /* Hide the spinner when the page is loaded */
 body.loaded .spinner-overlay {
     display: none;
 }
-
 
