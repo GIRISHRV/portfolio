@@ -506,3 +506,21 @@ body.loaded .spinner-overlay {
     display: none;
 }
 
+/* Custom CSS for links inside a pill */
+.pill-link {
+    display: inline-block;
+    background-color: var(--pill-background);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pill-link:hover {
+    background-color: var(--pill-bar-color);
+    color: #fff; /* Change text color on hover */
+}
+
