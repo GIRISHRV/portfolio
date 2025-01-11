@@ -1,3 +1,4 @@
+// Theme switching function
 function setTheme(mode = 'auto') {
     const userMode = localStorage.getItem('bs-theme');
     const sysMode = window.matchMedia('(prefers-color-scheme: light)').matches;
@@ -25,30 +26,59 @@ function setTheme(mode = 'auto') {
     }
 }
 
-setTheme();
+setTheme('system'); // Set initial theme to system preference
 document.querySelectorAll('.mode-switch .btn').forEach(e => e.addEventListener('click', () => setTheme(e.id)));
-window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => setTheme());
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => setTheme('system'));
 
 document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
     const navbarHeight = document.querySelector('.navbar').offsetHeight;
 
-    function changeActiveLink() {
-        let index = sections.length;
+    // Hide spinner once the page is fully loaded
+    window.addEventListener('load', function () {
+        const spinner = document.getElementById('spinner');
+        spinner.style.display = 'none';
+    });
 
-        while (--index && window.scrollY + navbarHeight + 50 < sections[index].offsetTop) {}
-
-        navLinks.forEach((link) => link.classList.remove('active'));
-        if (index >= 0) {
-            navLinks[index].classList.add('active');
-        }
+    // Debounce function
+    function debounce(func, wait = 20, immediate = true) {
+        let timeout;
+        return function () {
+            const context = this, args = arguments;
+            const later = function () {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            const callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
     }
 
-    changeActiveLink();
-    window.addEventListener('scroll', changeActiveLink);
+    // Change active link using IntersectionObserver
+    const observerOptions = {
+        root: null,
+        rootMargin: `-${navbarHeight}px 0px 0px 0px`,
+        threshold: 0.5
+    };
 
-    document.querySelectorAll('a.nav-link').forEach(anchor => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const id = entry.target.getAttribute('id');
+            const navLink = document.querySelector(`.nav-link[href="#${id}"]`);
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                if (navLink) navLink.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+
+    // Smooth scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
@@ -59,26 +89,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 behavior: 'smooth'
             });
         });
-    });
-
-    // Initialize Bootstrap tooltips
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-
-    // Hide the tooltip on click
-    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (tooltipTriggerEl) {
-        tooltipTriggerEl.addEventListener('click', function () {
-            const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
-            tooltip.hide();
-        });
-    });
-
-    // Hide the spinner once the page is fully loaded and at least 1.5 seconds have passed
-    window.addEventListener('load', function () {
-        setTimeout(function () {
-            document.body.classList.add('loaded');
-        }, 1500); // 1.5 seconds delay
     });
 });

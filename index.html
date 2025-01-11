@@ -10,7 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    
+    <!-- Add AOS CSS for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
     <!-- Spinner -->
@@ -54,37 +55,38 @@
         </div>
     </nav>
 
-<!-- Hero Section -->
-<section class="hero py-5" id="home">
-    <div class="container text-center">
-        <div>
-            <h1 class="home__title">Hi,<br>I'm <span class="home__title-color">Girish R V</span><br> Web Developer.</h1>
+    <!-- Hero Section -->
+    <section class="hero py-5" id="home" data-aos="fade-in">
+        <div class="container text-center">
+            <div data-aos="fade-up">
+                <h1 class="home__title">Hi,<br>I'm <span class="home__title-color">Girish R V</span><br> Web Developer.</h1>
+            </div>
+            <div class="home__social" data-aos="fade-up" data-aos-delay="200">
+                <a href="https://www.linkedin.com/in/girishrv05/" class="home__social-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                <a href="mailto:girish29052005@gmail.com" class="home__social-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Email"><i class='bx bxl-gmail'></i></a>
+                <a href="https://github.com/GIRISHRV" class="home__social-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="GitHub"><i class='bx bxl-github'></i></a>
+                <a href="https://docs.google.com/document/d/1Cqdc5H2Uvaws4w2u3bIJmibL3kUE3ubQ3qAk16KpaH8/edit?usp=sharing" class="home__social-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Resume"><i class='bx bxs-file'></i></a>
+            </div>
         </div>
-        <div class="home__social">
-            <a href="https://www.linkedin.com/in/girishrv05/" class="home__social-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
-            <a href="mailto:girish29052005@gmail.com" class="home__social-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Email"><i class='bx bxl-gmail'></i></a>
-            <a href="https://github.com/GIRISHRV" class="home__social-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="GitHub"><i class='bx bxl-github'></i></a>
-            <a href="https://docs.google.com/document/d/1Cqdc5H2Uvaws4w2u3bIJmibL3kUE3ubQ3qAk16KpaH8/edit?usp=sharing" class="home__social-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Resume"><i class='bx bxs-file'></i></a>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Work Section -->
-    <section id="work" class="work py-5">
+    <section id="work" class="work py-5" data-aos="fade-up">
+        
         <div class="container text-center">
             <h2>Work</h2>
             <div class="work__about">
                 <p align="justify">I’m Girish R V, a second-year Computer Science undergraduate at Jain (Deemed-to-be University). With a strong foundation in programming and an ever-growing curiosity for technology, I’m on a journey to innovate and make a positive impact in the field of software engineering. Passionate about leveraging <span class="highlight">AI</span>, <span class="highlight">machine learning</span>, and <span class="highlight">APIs</span> to solve real-world problems. Creativity and precision in developing <span class='highlight'>intuitive</span>, <span class="highlight">user-friendly</span> interfaces and <span class='highlight'>robust</span> backend systems.</p>
             </div>
             <div class="work__list flex-container">
-                <a href="https://www.jainuniversity.ac.in/" class="work-item">
+                <a href="https://www.jainuniversity.ac.in/" class="work-item" data-aos="fade-up">
                     <div class="work__icon-background">
                         <i class="fas fa-school work__icon"></i>
                     </div>
                     <div class="work__data">
                         <span class="work__name">Jain (Deemed to be University)</span>
                         <span class="work__date">2023 - 2027</span>
-                        <span class="work__description"align="justify">I'm currently a 2nd-year student at 
+                        <span class="work__description" align="justify">I'm currently a 2nd-year student at 
                             Jain University, pursuing a degree in Software Engineering (SE). 
                             I am passionate about web development, working on projects that 
                             utilize modern web technologies like HTML, CSS, JavaScript, and Bootstrap.<br>
@@ -93,7 +95,7 @@
                     </div>
                     <div class="skill__bar skill__python"></div>
                 </a>
-                <div class="work-item">
+                <div class="work-item" data-aos="fade-up">
                     <div class="work__icon-background">
                         <i class="fas fa-certificate work__icon"></i>
                     </div>
@@ -108,7 +110,7 @@
                     </div>
                     <div class="skill__bar skill__python"></div>
                 </div>
-                <a href="https://songreco.vercel.app/" class="work-item">
+                <a href="https://songreco.vercel.app/" class="work-item" data-aos="fade-up">
                     <div class="work__icon-background">
                         <i class="fas fa-icons work__icon"></i>
                     </div>
@@ -125,7 +127,7 @@
                     </div>
                     <div class="skill__bar skill__python"></div>
                 </a>
-                <div class="work-item">
+                <div class="work-item" data-aos="fade-up">
                     <div class="work__icon-background">
                         <i class="fas fa-certificate work__icon"></i>
                     </div>
@@ -146,12 +148,13 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills py-5">
+    <section id="skills" class="skills py-5" data-aos="fade-up">
         <div class="container">
             <h2>Skills</h2>
             <p class="skills__text">Here are some of the technologies I work with:</p>
             <div class="skills__list">
-                <div class="skill">
+                <div class="skill" data-aos="fade-up">
+                    
                     <div class="skill__icon-background">
                         <i class="fa-brands fa-python skill__icon"></i>
                     </div>
@@ -161,7 +164,7 @@
                     </div>
                     <div class="skill__bar skill__python"></div>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="fade-up">
                     <div class="skill__icon-background">
                         <i class="fas fa-flask skill__icon"></i>
                     </div>
@@ -171,7 +174,7 @@
                     </div>
                     <div class="skill__bar skill__flask"></div>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="fade-up">
                     <div class="skill__icon-background">
                         <i class="fas fa-database skill__icon"></i>
                     </div>
@@ -181,7 +184,7 @@
                     </div>
                     <div class="skill__bar skill__mysql"></div>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="fade-up">
                     <div class="skill__icon-background">
                         <i class="fa-brands fa-html5 skill__icon"></i>
                     </div>
@@ -191,7 +194,7 @@
                     </div>
                     <div class="skill__bar skill__fullstack"></div>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="fade-up">
                     <div class="skill__icon-background">
                         <i class="fa-brands fa-java skill__icon"></i>
                     </div>
@@ -201,7 +204,7 @@
                     </div>
                     <div class="skill__bar skill__java"></div>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="fade-up">
                     <div class="skill__icon-background">
                         <i class="fas fa-code skill__icon"></i>
                     </div>
@@ -211,7 +214,7 @@
                     </div>
                     <div class="skill__bar skill__ai"></div>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="fade-up">
                     <div class="skill__icon-background">
                         <i class="fa-brands fa-css3-alt skill__icon"></i>
                     </div>
@@ -221,7 +224,7 @@
                     </div>
                     <div class="skill__bar skill__graphtheory"></div>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="fade-up">
                     <div class="skill__icon-background">
                         <i class="fa-brands fa-github skill__icon"></i>
                     </div>
@@ -231,7 +234,7 @@
                     </div>
                     <div class="skill__bar skill__googleapi"></div>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="fade-up">
                     <div class="skill__icon-background">
                         <i class="bx bxs-cog skill__icon"></i>
                     </div>
@@ -244,7 +247,24 @@
             </div>
         </div>
     </section>
+ <!-- Footer -->
+<footer class="footer py-5" data-aos="fade-in">
+    <div class="container text-center">
+        <p data-aos="fade-up">© 2025 Girish R V. All rights reserved.</p>
+        <div class="home__social" data-aos="fade-up" data-aos-delay="100">
+            <a href="https://www.linkedin.com/in/girishrv05/" class="foot__social-icon"><i class='bx bxl-linkedin'></i></a>
+            <a href="mailto:girish29052005@gmail.com" class="foot__social-icon"><i class='bx bxl-gmail'></i></a>
+            <a href="https://github.com/GIRISHRV" class="foot__social-icon"><i class='bx bxl-github'></i></a>
+        </div>
+        <p></p>
+    </div>
+</footer>
 
+    <!-- Add AOS JS for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
