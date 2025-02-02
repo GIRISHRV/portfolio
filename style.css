@@ -412,6 +412,58 @@ h2::after {
     object-fit: cover; /* Crop the image to fit the card */
 }
 
+/* Spinner overlay */
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    backdrop-filter: blur(5px); /* Background blur effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Ensure the spinner is above all other content */
+}
+
+/* Dark mode spinner */
+[data-bs-theme="dark"] .spinner-overlay {
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+}
+
+/* Hide the spinner when the page is loaded */
+body.loaded .spinner-overlay {
+    display: none;
+}
+
+/* Custom CSS for links inside a pill */
+.pill-link {
+    display: inline-block;
+    background-color: var(--pill-background);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    
+}
+
+.pill-link:hover {
+    background-color: var(--pill-bar-color);
+    color: #fff; /* Change text color on hover */
+    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    transform: scale(1.05); /* Scale up the item on hover */
+}
+
+.navbar, .mode-switch, .home__title, .home__social-icon, .work-item, .skill{
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -499,55 +551,5 @@ h2::after {
         width: 100%; /* Make skill items full width on mobile */
         height: auto; /* Allow height to adjust based on content */
     }
-}
-
-/* Spinner overlay */
-.spinner-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-    backdrop-filter: blur(5px); /* Background blur effect */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999; /* Ensure the spinner is above all other content */
-}
-
-/* Dark mode spinner */
-[data-bs-theme="dark"] .spinner-overlay {
-    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
-}
-
-/* Hide the spinner when the page is loaded */
-body.loaded .spinner-overlay {
-    display: none;
-}
-
-/* Custom CSS for links inside a pill */
-.pill-link {
-    display: inline-block;
-    background-color: var(--pill-background);
-    color: var(--text-color);
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
-    text-decoration: none;
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    
-}
-
-.pill-link:hover {
-    background-color: var(--pill-bar-color);
-    color: #fff; /* Change text color on hover */
-    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    transform: scale(1.05); /* Scale up the item on hover */
-}
-
-.navbar, .mode-switch, .home__title, .home__social-icon, .work-item, .skill, .certification__item {
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
