@@ -252,11 +252,7 @@ h2::after {
     transition: transform 0.3s ease; /* Add transition for hover effect */
     text-decoration: none; /* Remove underline from links */
     color: inherit; /* Inherit text color */
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
-}
-
-.work-item {
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smooth effect */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;; /* Add transition for smooth effect */
 }
 
 .work-item:nth-child(odd):hover {
