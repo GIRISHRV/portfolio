@@ -182,7 +182,7 @@ h2::after {
 
 .highlight {
     color: var(--hero-title-color);
-    text-shadow: 0 0 4px var(--underline-color); /* Add glowing shadow to underline */
+    text-shadow: 0 0 3px var(--underline-color); /* Add glowing shadow to underline */
     position: relative;
 }
 
