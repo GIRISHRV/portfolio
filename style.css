@@ -11,6 +11,7 @@
     --pill-bar-color: #007bff; /* Color for pill bar */
     --icon-color: #007bff; /* Color for icons */
     --navbar-shadow-color: rgba(0, 123, 255, 0.5); /* Glowing shadow color for light theme */
+    --glow-shadow: 0 0 10px var(--underline-color); /* Reusable glow shadow */
 }
 
 /* Dark theme */
@@ -26,6 +27,7 @@
     --pill-bar-color: #ff6347; /* Color for pill bar */
     --icon-color: #ff6347; /* Color for icons */
     --navbar-shadow-color: rgba(255, 99, 71, 0.5); /* Glowing shadow color for dark theme */
+    --glow-shadow: 0 0 10px var(--underline-color); /* Reusable glow shadow */
 }
 
 html, body {
@@ -43,12 +45,12 @@ html, body {
     padding: 0.5rem; /* Add padding around the buttons */
     display: flex; /* Use flexbox to contain the buttons */
     gap: 0.5rem; /* Add space between the buttons */
-    box-shadow: 0 0 10px var(--navbar-shadow-color); /* Add glowing shadow */
+    box-shadow: var(--glow-shadow); /* Add glowing shadow */
     border: 2px solid var(--underline-color)!important; /* Set border color to accent color */
 }
 
 .bi {
-    text-shadow: 0 0 10px var(--text-color); /* Add glowing shadow to underline */
+    text-shadow: var(--glow-shadow); /* Add glowing shadow to underline */
 }
 .navbar {
     background-color: var(--navbar-background);
@@ -57,7 +59,7 @@ html, body {
     top: 0;
     width: 100%;
     z-index: 1000; /* Ensure the navbar is above other content */
-    box-shadow: 0 0 10px var(--navbar-shadow-color); /* Add glowing shadow */
+    box-shadow: var(--glow-shadow); /* Add glowing shadow */
     border-bottom: 2px solid var(--underline-color)!important; /* Set border color to accent color */ 
 }
 
@@ -83,7 +85,7 @@ html, body {
     position: absolute;
     bottom: -5px;
     left: 0;
-    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
+    box-shadow: var(--glow-shadow); /* Add glowing shadow to underline */
 }
 
 .nav-link.active::after,
@@ -130,7 +132,7 @@ html, body {
 
 .home__title-color {
     color: var(--hero-title-color);
-    text-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
+    text-shadow: var(--glow-shadow); /* Add glowing shadow to underline */
 }
 
 
@@ -143,7 +145,7 @@ html, body {
 .home__social-icon {
     font-size: 2.5rem; /* Increase font size for the social icons */
     color: var(--text-color);
-    text-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
+    text-shadow: var(--glow-shadow); /* Add glowing shadow to underline */
 }
 .foot__social-icon {
     font-size: 2.5rem; /* Increase font size for the social icons */
@@ -168,7 +170,7 @@ h2::after {
     position: absolute;
     bottom: -5px;
     left: 0;
-    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
+    box-shadow: var(--glow-shadow); /* Add glowing shadow to underline */
 }
 
 .work__about {
@@ -194,13 +196,6 @@ h2::after {
     
 }
 
-.skills__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem; /* Add space between the skill items */
-}
-
 .skill {
     background-color: var(--pill-background);
     padding: 1rem;
@@ -216,12 +211,12 @@ h2::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease; /* Add transition for hover effect */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease !important; /* Add transition for hover effect */
 }
 
 .skill:hover {
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease !important; /* Add transition for smooth effect */
     transform: scale(1.05) !important; /* Scale up the item on hover */
+    box-shadow: var(--glow-shadow); /* Add glowing shadow to underline */
 }
 
 .work__list {
@@ -249,20 +244,19 @@ h2::after {
     height: auto; /* Allow height to adjust based on content */
     display: flex;
     flex-direction: column; /* Stack content vertically */
-    transition: transform 0.3s ease; /* Add transition for hover effect */
     text-decoration: none; /* Remove underline from links */
     color: inherit; /* Inherit text color */
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;; /* Add transition for smooth effect */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smooth effect */
 }
 
 .work-item:nth-child(odd):hover {
     transform: translateX(-10px) scale(1.05) !important; /* Move left and scale up */
-    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
+    box-shadow: var(--glow-shadow); /* Add glowing shadow to underline */
 }
 
 .work-item:nth-child(even):hover {
     transform: translateX(10px) scale(1.05) !important; /* Move right and scale up */
-    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
+    box-shadow: var(--glow-shadow); /* Add glowing shadow to underline */
 }
 
 .home__social-icon {
@@ -288,108 +282,79 @@ h2::after {
 .work__icon {
     font-size: 2rem; /* Adjust icon size as needed */
     color: var(--icon-color); /* Use a variable or specific color */
-    text-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
+    text-shadow: var(--glow-shadow); /* Add glowing shadow to underline */
 }
 
 .work__data {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align text to the left */
+    gap: var(--spacing-xs);
 }
 
 .work__name {
-    font-size: 1.2rem; /* Increase font size for the name */
-    font-weight: bold; /* Make the name bold */
-    margin-bottom: 0.5rem; /* Add space below the name */
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--hero-title-color);
 }
 
 .work__date {
-    font-size: 1rem; /* Adjust font size as needed */
-    font-weight: normal; /* Adjust font weight as needed */
-    margin-bottom: 0.5rem; /* Add space below the date */
-    display: block; /* Ensure the date is displayed on a separate line */
+    font-size: 0.95rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-weight: 500;
 }
 
 .work__description {
-    font-size: 1rem; /* Adjust font size for the description */
-    line-height: 1.5; /* Increase line height for better readability */
-}
-
-.skill{
-    background-color: var(--pill-background);
-    padding: 1rem;
-    border-radius: 1rem;
-    text-align: center;
     font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
-    margin-bottom: 1rem;
-    position: relative;
-    overflow: hidden;
-    width: 200px; /* Set a fixed width */
-    height: 100px; /* Set a fixed height */
+    line-height: 1.6;
+    margin-top: var(--spacing-sm);
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.skill__icon-background {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease; /* Add transition for hover effect */
+    width: 60px;
+    height: 60px;
+    background-color: rgba(94, 114, 228, 0.1);
+    border-radius: 12px;
 }
 
-.skill:hover{
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
-    transform: scale(1.05); /* Scale up the item on hover */
-    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
+.skill__icon {
+    font-size: 2rem;
+    color: var(--icon-color);
 }
 
-.skill__icon-background{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px; /* Adjust width as needed */
-    height: 50px; /* Adjust height as needed */
-    margin-right: 1rem;
-}
-
-.skill__icon{
-    font-size: 2rem; /* Adjust icon size as needed */
-    color: var(--icon-color); /* Use a variable or specific color */
-    text-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
-}
-
-.skill__data{
-    position: relative;
-    z-index: 1;
+.skill__data {
     display: flex;
     flex-direction: column;
+    gap: 4px;
+    text-align: center;
 }
 
-.skill__name{
+.skill__name {
     font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
 }
 
-.skill__percentage{
-    font-size: 0.8rem;
-    font-family: 'Roboto', sans-serif;
-    margin-top: 0.5rem;
-}
-
-.skill__bar {
-    width: 100%;
-    height: 4px;
-    background: var(--pill-bar-color);
-    margin-top: 1rem;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
+.skill__percentage {
+    font-size: 0.85rem;
+    opacity: 0.7;
 }
 
 .card {
-    transition: transform 0.3s ease;
-    overflow: hidden; /* Ensure the image is cropped */
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border: 1px solid var(--pill-border);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
 }
 
 .card-title {
@@ -405,7 +370,7 @@ h2::after {
 .card-img-top {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Crop the image to fit the card */
+    object-fit: cover;
 }
 
 /* Spinner overlay */
@@ -428,34 +393,67 @@ h2::after {
     background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
 }
 
-/* Hide the spinner when the page is loaded */
 body.loaded .spinner-overlay {
     display: none;
 }
 
-/* Custom CSS for links inside a pill */
+/* Footer */
+.footer {
+    background-color: var(--background-color);
+    border-top: 1px solid var(--pill-border);
+    padding: var(--spacing-xl) 0;
+}
+
+.navbar, .mode-switch, .home__title, .home__social-icon, .work-item, .skill {
+    transition: all 0.3s ease;
+}
 .pill-link {
     display: inline-block;
     background-color: var(--pill-background);
+    border: 1px solid var(--pill-border);
     color: var(--text-color);
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 20px;
     text-decoration: none;
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    
+    font-size: 0.95rem;
+    margin: var(--spacing-xs);
+    transition: all 0.3s ease;
+    box-shadow: var(--elevation-1);
 }
 
 .pill-link:hover {
-    background-color: var(--pill-bar-color);
-    color: #fff; /* Change text color on hover */
-    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    transform: scale(1.05); /* Scale up the item on hover */
+    background-color: var(--hero-title-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-2);
+    border-color: var(--hero-title-color);
 }
 
-.navbar, .mode-switch, .home__title, .home__social-icon, .work-item, .skill{
-    transition: background-color 0.3s ease, color 0.3s ease;
+/* Spinner overlay */
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+[data-bs-theme="dark"] .spinner-overlay {
+    background: rgba(10, 14, 39, 0.95);
+}
+
+body.loaded .spinner-overlay {
+    display: none;
+}
+
+.navbar, .mode-switch, .home__title, .home__social-icon, .work-item, .skill {
+    transition: all 0.3s ease;
 }
 
 
@@ -483,69 +481,96 @@ body.loaded .spinner-overlay {
 }
 
 .navbar-toggler {
-    box-shadow: 0 0 10px var(--underline-color); /* Add glowing shadow to underline */
-   
+    border: 1px solid var(--pill-border);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
 }
+
+.navbar-toggler:hover {
+    background-color: var(--pill-background);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(94, 114, 228, 0.25);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .home__title {
         font-size: 2.5rem;
     }
 
+    .hero__tagline {
+        font-size: 1.2rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1rem;
+    }
+
     .home__social-icon {
+        font-size: 1.5rem;
+        width: 45px;
+        height: 45px;
+    }
+
+    .section-title {
         font-size: 2rem;
     }
 
-    h2 {
-        font-size: 2rem;
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     }
 
     .work__list {
-        flex-direction: column; /* Stack work items vertically on mobile */
+        flex-direction: column;
     }
 
     .work-item {
-        width: 100%; /* Make work items full width on mobile */
+        width: 100%;
     }
 
-    .skill{
-        width: 100%; /* Make skill items full width on mobile */
-        height: auto; /* Allow height to adjust based on content */
+    /* Mobile navbar fullscreen overlay */
+    .navbar-collapse {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: var(--navbar-background);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: var(--spacing-lg);
+        border-bottom: 1px solid var(--pill-border);
+        box-shadow: var(--elevation-3);
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
     }
-}
 
-@media (max-width: 768px) {
     .navbar-nav {
-        text-align: center; /* Center the navbar entries */
-        width: 100%; /* Make the navbar entries take full width */
+        text-align: center;
+        width: 100%;
     }
 
     .navbar-nav .nav-item {
         text-align: center;
-        width: 100%; /* Make each nav item take full width */
+        width: 100%;
+        padding: var(--spacing-sm) 0;
     }
-    
-    .mode-switch {
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center; /* Center the theme switching buttons */
-        width: 100%; /* Make the mode switch take full width */
-        margin: 1rem 0; /* Add some space above and below the mode switch */
-        box-shadow: 0 0 10px var(--navbar-shadow-color); /* Add glowing shadow */
-        border: 2px solid var(--underline-color)!important; /* Set border color to accent color */
-    }
-    
-    .mode-switch .btn {
-        text-align: center;
-        margin: 0 0.5rem; /* Add some space between the buttons */
-    }
-}
 
-@media (max-width: 768px) {
-    .skill {
-        width: 100%; /* Make skill items full width on mobile */
-        height: auto; /* Allow height to adjust based on content */
+    .navbar-nav .nav-link {
+        font-size: 1.2rem;
+        padding: var(--spacing-sm);
+    }
+
+    .mode-switch {
+        justify-content: center;
+        width: 100%;
+        margin: var(--spacing-md) 0;
     }
 }
 

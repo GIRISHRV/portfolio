@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Girish R V - Portfolio</title>
-    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="description" content="Girish R V - Web Developer & Computer Science undergraduate. Passionate about AI, machine learning, and building user-friendly web applications.">
+    <meta name="keywords" content="Girish R V, Web Developer, Computer Science, Portfolio, Python, Flask, HTML, CSS, JavaScript, Bootstrap">
+    <meta property="og:title" content="Girish R V - Portfolio">
+    <meta property="og:description" content="Web Developer & Computer Science undergraduate passionate about AI and web development.">
+    <meta property="og:type" content="website">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel='stylesheet'>
@@ -75,17 +79,17 @@
         <div class="container text-center">
             <h2>Work</h2>
             <div class="work__about">
-                <p align="justify">I’m Girish R V, a third-year Computer Science undergraduate at Jain (Deemed-to-be University). With a strong foundation in programming and an ever-growing curiosity for technology, I’m on a journey to innovate and make a positive impact in the field of software engineering. Passionate about leveraging <span class="highlight">AI</span>, <span class="highlight">machine learning</span>, and <span class="highlight">APIs</span> to solve real-world problems. Creativity and precision in developing <span class='highlight'>intuitive</span>, <span class="highlight">user-friendly</span> interfaces and <span class='highlight'>robust</span> backend systems.</p>
+                <p>I'm Girish R V, a third-year Computer Science undergraduate at Jain (Deemed-to-be University). With a strong foundation in programming and an ever-growing curiosity for technology, I'm on a journey to innovate and make a positive impact in the field of software engineering. Passionate about leveraging <span class="highlight">AI</span>, <span class="highlight">machine learning</span>, and <span class="highlight">APIs</span> to solve real-world problems. Creativity and precision in developing <span class='highlight'>intuitive</span>, <span class="highlight">user-friendly</span> interfaces and <span class='highlight'>robust</span> backend systems.</p>
             </div>
             <div class="work__list flex-container">
-                <a href="https://www.jainuniversity.ac.in/" class="work-item" data-aos="fade-up">
+                <a href="https://set.jainuniversity.ac.in/" class="work-item" data-aos="fade-up">
                     <div class="work__icon-background">
                         <i class="fas fa-school work__icon"></i>
                     </div>
                     <div class="work__data">
                         <span class="work__name">Jain (Deemed to be University)</span>
                         <span class="work__date">2023 - 2027</span>
-                        <span class="work__description" align="justify">I'm currently a 2nd-year student at 
+                        <span class="work__description">I'm currently a 3rd-year student at 
                             Jain University, pursuing a degree in Software Engineering (SE). 
                             I am passionate about web development, working on projects that 
                             utilize modern web technologies like HTML, CSS, JavaScript, and Bootstrap.<br>
@@ -117,7 +121,7 @@
                     <div class="work__data">
                         <span class="work__name">Tunesearch</span>
                         <span class="work__date">Dec 2024 - Present</span>
-                        <span class="work__description" align="justify">TuneSearch is a web application designed to 
+                        <span class="work__description">TuneSearch is a web application designed to 
                             provide personalized music recommendations based on user-uploaded playlists 
                             or Spotify Public Playlist URLs.The application leverages AI and various
                             APIs to generate recommendations and enrich metadata for each track.
@@ -134,7 +138,7 @@
                     <div class="work__data">
                         <span class="work__name">PhishGuard</span>
                         <span class="work__date">Sep 2025 - Present</span>
-                        <span class="work__description" align="justify">
+                        <span class="work__description">
                             Developed a unified phishing detection platform that analyzes emails, URLs, files, and QR codes using a hybrid approach, combining rule-based logic, Google Gemini AI, Hugging Face BERT ML, and VirusTotal threat intelligence. The platform delivers real-time, actionable results with automated SOC alerts, history tracking, and compliance reporting, making advanced phishing detection accessible to both technical and non-technical users.
                         </span>
                     </div>
@@ -147,7 +151,7 @@
                     <div class="work__data">
                         <span class="work__name">Communique</span>
                         <span class="work__date">Jan 2025 - Present</span>
-                        <span class="work__description" align="justify">
+                        <span class="work__description">
                             Communique is a conceptual social media web application designed to provide a seamless and engaging user experience. 
                             Although this project currently uses dummy data, it demonstrates several key features that would enhance user interaction and content presentation. 
                             The app’s design adapts fluidly between desktop and mobile devices, ensuring a consistent experience across platforms.
@@ -163,7 +167,7 @@
                     <div class="work__data">
                         <span class="work__name">LiveEditor</span>
                         <span class="work__date">Jan 2025 - Present</span>
-                        <span class="work__description" align="justify">
+                        <span class="work__description">
                             LiveEditor is a real-time online code editor that allows users to write, edit, and preview HTML, CSS, and JavaScript seamlessly within the same interface. 
                             It provides an interactive environment for web developers, designers, and beginners to experiment with code, toggle between editor sections, and instantly see their results in the preview window. 
                             The editor supports dark/light themes and allows users to download their project files as a zip, including the HTML, CSS, and JS code, making it a powerful tool for rapid prototyping and learning.
@@ -269,21 +273,17 @@
     <!-- Footer -->
     <footer class="footer py-5" data-aos="fade-in">
         <div class="container text-center">
-            <p data-aos="fade-up">© 2026 Girish R V. All rights reserved.</p>
+            <p data-aos="fade-up" id="copyright">© <span id="currentYear"></span> Girish R V. All rights reserved.</p>
             <div class="home__social" data-aos="fade-up" data-aos-delay="100">
                 <a href="https://www.linkedin.com/in/girishrv05/" class="foot__social-icon" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
                 <a href="mailto:girish29052005@gmail.com" class="foot__social-icon" aria-label="Email"><i class='bx bxl-gmail'></i></a>
                 <a href="https://github.com/GIRISHRV" class="foot__social-icon" aria-label="GitHub"><i class='bx bxl-github'></i></a>
             </div>
         </div>
-        <p></p>
     </footer>
 
     <!-- Add AOS JS for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
