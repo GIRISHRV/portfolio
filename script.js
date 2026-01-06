@@ -90,10 +90,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
     }
+    
+    // Prevent scroll jump on reload
+    if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
+    }
 
     // Initialize AOS with error handling
     if (typeof AOS !== 'undefined') {
-        AOS.init();
+        AOS.init({
+            once: true, // Whether animation should happen only once - while scrolling down
+            duration: 800, // Duration of animation
+            offset: 100, // Offset (in px) from the original trigger point
+            delay: 100, // Delay (in ms)
+        });
     }
 
     // Change active link using IntersectionObserver
