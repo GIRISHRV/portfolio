@@ -18,18 +18,6 @@ function setTheme(mode = 'auto') {
     buttons.forEach(e => e.classList.remove('text-body'));
     const activeButton = document.getElementById(modeChosen);
     if (activeButton) activeButton.classList.add('text-body');
-
-    // Update spinner color based on theme
-    const spinner = document.querySelector('.spinner-border');
-    if (spinner) {
-        if (modeChosen === 'dark') {
-            spinner.classList.remove('text-primary');
-            spinner.classList.add('text-light');
-        } else {
-            spinner.classList.remove('text-light');
-            spinner.classList.add('text-primary');
-        }
-    }
 }
 
 setTheme('system'); // Set initial theme to system preference
