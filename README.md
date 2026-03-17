@@ -1,59 +1,52 @@
-# Girish R V - Portfolio
+# Girish R V — Developer Portfolio
 
-Welcome to the repository for my personal portfolio website. This project showcases my skills, work experience, and projects in a visually appealing and responsive manner.
+Welcome to the source code of my personal portfolio. I am a Computer Science undergrad at Jain University and an incoming Software Engineer Intern at Microsoft, focusing on Distributed Systems, P2P architectures, and Enterprise AI.
 
-## Table of Contents
+Instead of shipping a heavy React or Next.js bundle, this portfolio is built as an exercise in extreme minimalism and browser fundamentals. It is a zero-dependency, single-file architecture (HTML/CSS/JS) that loads instantly while maintaining a high-end, interactive UI.
 
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [How to Use](#how-to-use)
-- [Installation](#installation)
-- [License](#license)
-- [Contact](#contact)
+🌐 Live Website: [Portfolio](https://girishrv.vercel.app)
 
-## Features
+🏗️ Architecture & Philosophy
+**Zero Dependencies**: No React, no Tailwind, no npm modules. Everything from the bento-box grid to the scroll-reveal animations is written in pure, vanilla CSS and JavaScript.
 
-- **Responsive Design**: The website is fully responsive, ensuring a seamless experience across different devices and screen sizes.
-- **Theme Switching**: Users can switch between light, dark, and system-preferred themes using the theme switcher buttons.
-- **Smooth Scrolling**: Navigation links in the navbar smoothly scroll to the corresponding sections of the page.
-- **Interactive Elements**: Social media icons and work items are interactive, with hover effects that enhance user engagement.
-- **Content Sections**:
-  - **Hero Section**: Introduces me with a welcoming message and social media links.
-  - **Work Section**: Highlights my work experience and projects with detailed descriptions and clickable links.
-  - **Skills Section**: Lists the technologies and tools I am proficient in, with visual indicators of my expertise level.
+**Dynamic Content**: The "Selected Work" section doesn't require manual updating. It hooks directly into the GitHub API, utilizing localStorage caching to manage rate limits and instantly render my latest repositories.
 
-## Technologies Used
+**Performance First**: Custom Intersection Observers handle animations lazily, ensuring 60fps scrolling without main-thread blocking.
 
-- **HTML5**: For structuring the content and layout of the website.
-- **CSS3**: For styling the website, including custom properties for theme colors and responsive design.
-- **JavaScript**: For adding interactivity, theme switching functionality, and smooth scrolling.
-- **Bootstrap**: For responsive grid layout, navbar, and other UI components.
-- **Font Awesome & Boxicons**: For scalable vector icons used in the social media links and work items.
+✨ Key Features
+**The P2P Mesh Canvas**: The hero background features a custom HTML5 <canvas> simulation of a peer-to-peer mesh topology—a direct nod to my work on decentralized engines like HyperLink.
 
-## How to Use
+**Live Internship Telemetry**: A custom JS countdown tracks the exact T-Minus until my SWE Intern start date at Microsoft India Development Center.
 
-1. **Navigation**: Use the navbar at the top to navigate between different sections of the website. The active link is highlighted based on the current scroll position.
-2. **Theme Switching**: Click on the theme switcher buttons (moon, sun, and display icons) to toggle between dark, light, and system-preferred themes.
-3. **Interactive Elements**: Hover over the social media icons and work items to see the hover effects. Click on the work items to navigate to the respective project links.
+**Bento Grid UI**: A fully responsive, CSS Grid-powered bento box layout detailing my education, certifications, and technical stack.
 
-## Installation
+**Magnetic Action Buttons**: Buttons calculate cursor coordinates relative to their bounding box to create a fluid, magnetic pull effect on hover.
 
-To run this project locally, follow these steps:
+🕳️ The "1997" Easter Egg
+This site contains a highly classified, lore-heavy easter egg. It utilizes a custom JavaScript keylogger to listen for a specific string of characters.
+
+Triggering the sequence initiates a complete DOM takeover, shifting the site into an aggressive, audio-reactive Y2K "malware" state. It features:
+
+- Web Audio API Fast Fourier Transform (FFT) for real-time bass detection.
+- Procedurally generated SVG noise overlays.
+- A functional terminal HUD that "exfiltrates" deep-lore files.
+- CSS-driven chromatic aberration and system quakes.
+
+**Hint**: Check the HTML comments at the absolute top of the source code.
+
+🚀 Local Setup
+Because this project respects the original architecture of the web, there is no npm install or build step required.
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/GIRISHRV/portfolio.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd portfolio
-   ```
-3. Open `index.html` in your preferred web browser.
+```bash
+git clone https://github.com/GIRISHRV/portfolio.git
+```
+2. Open index.html in your browser.
 
-## Contact
+That's it.
 
-Feel free to reach out to me via [LinkedIn](https://www.linkedin.com/in/girishrv05/) or [email](mailto:girish29052005@gmail.com).
+📬 Contact
+LinkedIn: [linkedin.com/in/girishrv05](https://www.linkedin.com/in/girishrv05/)
+Email: [girish29052005@gmail.com](mailto:girish29052005@gmail.com)
 
----
-
-Thank you for visiting my portfolio! I hope you enjoy exploring my work and projects.
+Built with pure HTML, CSS, and JS. Designed for speed.
