@@ -20,7 +20,9 @@ Instead of shipping a heavy React or Next.js bundle, this portfolio is built as 
 
 **Bento Grid UI**: A fully responsive, CSS Grid-powered bento box layout detailing my education, certifications, and technical stack.
 
-**Magnetic Action Buttons**: Buttons calculate cursor coordinates relative to their bounding box to create a fluid, magnetic pull effect on hover.
+**Magnetic & Tilt Interactive Components**: Buttons and cards (bento-box, projects, and experience) calculate cursor coordinates to create a fluid, magnetic pull or 3D tilt effect on hover, accompanied by a premium radial glow.
+
+**Developer Console CLI**: A built-in CLI (`girish.hire()`) that allows technical recruiters to instantly download my latest resume as a PDF directly from Google Docs.
 
 🕳️ The "1997" Easter Egg
 This site contains a highly classified, lore-heavy easter egg. It utilizes a custom JavaScript keylogger to listen for a specific string of characters.
@@ -31,6 +33,7 @@ Triggering the sequence initiates a complete DOM takeover, shifting the site int
 - Procedurally generated SVG noise overlays.
 - A functional terminal HUD that "exfiltrates" deep-lore files.
 - CSS-driven chromatic aberration and system quakes.
+- A dramatic BSOD (Blue Screen of Death) escape hatch that reloads the system.
 
 **Hint**: Check the HTML comments at the absolute top of the source code.
 

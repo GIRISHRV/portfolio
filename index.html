@@ -66,17 +66,25 @@ If you are reading this source code... Type 'xero' anywhere on the page.
     }
 
     :root {
-      --bg: #0d0d0f;
-      --bg2: #131316;
-      --bg3: #1a1a1f;
-      --line: #ffffff0f;
-      --line2: #ffffff18;
-      --text: #f0f0f0;
-      --muted: #888;
-      --dim: #444;
-      --accent: #4f8ef7;
-      --accent2: #3a7ae8;
-      --green: #3ecf8e;
+      /* Warm, dusty charcoals */
+      --bg: #141311;
+      --bg2: #1c1a18;
+      --bg3: #262320;
+      --line: rgba(255, 255, 255, 0.06);
+      --line2: rgba(255, 255, 255, 0.12);
+
+      /* Bone whites and sepia-tinted greys */
+      --text: #e8e4dc;
+      --muted: #9a9388;
+      --dim: #5c564f;
+
+      /* Muted spray-paint orange/gold */
+      --accent: #d48c48;
+      --accent2: #b57030;
+
+      /* Muted olive green for success states */
+      --green: #6b8e6b;
+
       --sans: 'Plus Jakarta Sans', sans-serif;
     }
 
@@ -92,6 +100,17 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       line-height: 1.6;
       overflow-x: hidden;
       transition: background 0.3s, color 0.3s;
+    }
+
+    /* Meteora Texture Overlay */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      /* Keep it behind the canvas */
+      pointer-events: none;
+      background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.03"/%3E%3C/svg%3E');
     }
 
     ::selection {
@@ -110,6 +129,18 @@ If you are reading this source code... Type 'xero' anywhere on the page.
     ::-webkit-scrollbar-thumb {
       background: var(--dim);
       border-radius: 2px
+    }
+
+    /* SCROLL PROGRESS BAR */
+    #scroll-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: var(--accent);
+      z-index: 2000;
+      width: 0%;
+      transition: width 0.1s ease-out;
     }
 
     /* NAV */
@@ -270,7 +301,7 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       line-height: .95;
       letter-spacing: -.05em;
       margin-bottom: 1.5rem;
-      background: linear-gradient(to right, #fff, var(--accent), var(--green));
+      background: linear-gradient(to right, var(--text), var(--accent), var(--accent2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -298,6 +329,35 @@ If you are reading this source code... Type 'xero' anywhere on the page.
     .hero-sub strong {
       color: var(--text);
       font-weight: 500
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent); /* Meteora Orange */
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent);
+      animation: slowPulse 2s infinite ease-in-out;
+    }
+
+    @keyframes slowPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.6; }
     }
 
     .hero-actions {
@@ -415,13 +475,37 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       gap: 1rem;
       transition: all 0.3s cubic-bezier(.16, 1, .3, 1);
       min-height: 220px;
+      position: relative;
+      overflow: hidden; /* Crucial for the glow to stay inside */
     }
 
-    .bento-item:hover {
-      border-color: var(--accent);
-      background: var(--bg3);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+    /* The Magic Glow */
+    .bento-item::before, .proj::before, .exp-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: inherit;
+      padding: 2px; /* thickness of the glow border */
+      background: radial-gradient(
+        400px circle at var(--mouse-x, 0) var(--mouse-y, 0), 
+        rgba(212, 140, 72, 0.15), /* Meteora Orange */
+        transparent 40%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .bento-item:hover::before, .proj:hover::before {
+      opacity: 1;
     }
 
     .bento-label {
@@ -687,6 +771,8 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       scrollbar-width: none;
       -ms-overflow-style: none;
       position: relative;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
 
     .proj-grid::-webkit-scrollbar {
@@ -713,7 +799,7 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       transition: all 0.4s cubic-bezier(.16, 1, .3, 1);
       position: relative;
       border: 1px solid var(--line);
-      overflow: hidden;
+      overflow: hidden; /* Crucial for the glow to stay inside */
     }
 
     .proj:hover {
@@ -1333,6 +1419,58 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       display: flex;
     }
 
+    body.xero-tear {
+      transition: transform 0.05s steps(2);
+      transform: translateX(10px) skewX(2deg);
+      filter: hue-rotate(90deg) contrast(150%);
+    }
+
+    /* BSOD OVERLAY */
+    .bsod {
+      position: fixed;
+      inset: 0;
+      background: #0000aa;
+      color: #ffffff;
+      font-family: "Courier New", monospace;
+      padding: 10vw;
+      z-index: 1000000;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.4;
+    }
+
+    .bsod h1 {
+      background: #ffffff;
+      color: #0000aa;
+      display: inline-block;
+      padding: 0 10px;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+    }
+
+
+    /* 3D TILT EFFECT */
+    .bento-item, .proj, .exp-card {
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out, border-color 0.3s, background 0.3s;
+    }
+
+    .glitch-trail {
+      position: fixed;
+      pointer-events: none;
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: bold;
+      z-index: 9999;
+      animation: fadeOutTrail 0.3s forwards;
+    }
+
+    @keyframes fadeOutTrail {
+      to { opacity: 0; transform: scale(0.5); }
+    }
+
     /* SUBLIMINAL LYRICS */
     .subliminal-lyric {
       position: fixed;
@@ -1548,6 +1686,7 @@ If you are reading this source code... Type 'xero' anywhere on the page.
 </head>
 
 <body style="--mouse-x: 50%; --mouse-y: 50%;">
+  <div id="scroll-bar"></div>
   <canvas id="mesh-bg" style="position: fixed; inset: 0; z-index: -2; pointer-events: none; opacity: 0.4;"></canvas>
   <div id="spotlight"></div>
 
@@ -1586,6 +1725,9 @@ If you are reading this source code... Type 'xero' anywhere on the page.
   </div>
 
   <div id="home" class="hero">
+    <div class="hero-badge reveal">
+      <span class="status-dot"></span> Building HyperLink v1.0
+    </div>
     <h1 class="reveal">Hi! I'm Girish R V</h1>
     <span class="hero-role reveal" style="transition-delay:.1s">Distributed Systems & Full-Stack Engineer</span>
     <p class="hero-sub reveal" style="transition-delay:.2s">
@@ -1627,6 +1769,10 @@ If you are reading this source code... Type 'xero' anywhere on the page.
             <div class="edu-item-degree">B.Tech Computer Engineering</div>
             <div class="exp-date" style="margin-top: 0.2rem; font-size: 0.75rem;">2023 — 2027</div>
             <div class="edu-pills" style="margin-top: 0.8rem;">
+              <div class="bento-label" style="width: 100%; margin-bottom: 0.4rem; opacity: 0.6;">Peer Initiatives</div>
+              <span class="pill" style="border-color: var(--accent); color: var(--text);">Workshop Lead: Full-Stack Dev</span>
+            </div>
+            <div class="edu-pills" style="margin-top: 0.7rem;">
               <div class="bento-label" style="width: 100%; margin-bottom: 0.4rem; opacity: 0.6;">Key Coursework</div>
               <span class="pill">Data Structures</span>
               <span class="pill">OS Architecture</span>
@@ -1724,6 +1870,7 @@ If you are reading this source code... Type 'xero' anywhere on the page.
           </ul>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -1763,17 +1910,23 @@ If you are reading this source code... Type 'xero' anywhere on the page.
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
 
       <div class="reveal">
-        <h3 style="font-size: 0.85rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Core & Systems</h3>
+        <h3
+          style="font-size: 0.85rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">
+          Core & Systems</h3>
         <div class="skills-grid">
           <span class="skill-chip">Java</span>
           <span class="skill-chip">Python</span>
           <span class="skill-chip">SQL</span>
           <span class="skill-chip">Linux</span>
+          <span class="skill-chip">Selenium</span>
+          <span class="skill-chip">OOAD</span>
         </div>
       </div>
 
       <div class="reveal" style="transition-delay: 0.1s;">
-        <h3 style="font-size: 0.85rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Cloud & Data</h3>
+        <h3
+          style="font-size: 0.85rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">
+          Cloud & Data</h3>
         <div class="skills-grid">
           <span class="skill-chip">Google Cloud</span>
           <span class="skill-chip">Firebase</span>
@@ -1783,10 +1936,14 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       </div>
 
       <div class="reveal" style="transition-delay: 0.2s;">
-        <h3 style="font-size: 0.85rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Web & Ecosystem</h3>
+        <h3
+          style="font-size: 0.85rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">
+          Web & Ecosystem</h3>
         <div class="skills-grid">
           <span class="skill-chip">Next.JS</span>
           <span class="skill-chip">JavaScript</span>
+          <span class="skill-chip">Vitest</span>
+          <span class="skill-chip">Playwright</span>
           <span class="skill-chip">HTML/CSS</span>
           <span class="skill-chip">Git/GitHub</span>
         </div>
@@ -1799,19 +1956,87 @@ If you are reading this source code... Type 'xero' anywhere on the page.
     <span class="foot-brand">Girish R V</span>
   </footer>
 
+
+  <!-- BSOD -->
+  <div class="bsod" id="bsod">
+    <h1>WINDOWS</h1>
+    <p>A fatal exception 0E has occurred at 0028:C0011E36 in VXD VMM(01) + 00010E36. The current application will be
+      terminated.</p>
+    <p style="margin-top: 1rem;">* Press any key to terminate the current application.</p>
+    <p>* Press CTRL+ALT+DEL again to restart your computer. You will lose any unsaved information in all applications.
+    </p>
+    <p style="margin-top: 1rem; text-align: center;">Press any key to continue _</p>
+  </div>
+
   <script>
     // --- GLOBAL STATE ---
     let isXeroMode = false;
+    let mouseX = 0, mouseY = 0;
+    let analyzer, dataArray; // Web Audio
+
+    function updateHeroBadge() {
+      const badge = document.querySelector('.hero-badge');
+      if (!badge) return;
+      const options = { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: 'numeric', hour12: true };
+      const istTime = new Intl.DateTimeFormat('en-US', options).format(new Date());
+      const hour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata', hour: 'numeric', hour12: false });
+
+      const isSleeping = hour >= 2 && hour < 8;
+      badge.innerHTML = `<span class="status-dot"></span> ${isSleeping ? '🌙 Sleeping (probably)' : '☀️ Coding in Bangalore'} • ${istTime}`;
+    }
+    setInterval(updateHeroBadge, 60000);
+    updateHeroBadge();
+
+    // SCROLL PROGRESS
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("scroll-bar").style.width = scrolled + "%";
+    }, { passive: true });
+
+    // 3D TILT EFFECT
+    document.querySelectorAll('.bento-item, .proj, .exp-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      });
+    });
+
+    // DEVTOOLS CLI
+    window.girish = {
+      hire: () => {
+        console.log("%c🏆 HIRE GIRISH 🏆", "color: #d48c48; font-size: 30px; font-weight: bold;");
+        console.log("Automatically triggering resume download...");
+        const link = document.createElement('a');
+        link.href = 'https://docs.google.com/document/d/18oP9h15aDw48RRSy-pTW-zaETmF7p8zuMP8Xo4tArGw/export?format=pdf';
+        link.download = 'Girish_Resume.pdf';
+        link.click();
+        return "Downloading from Google Docs... 🚀";
+      }
+    };
+
 
     // ─── CONFIG ──────────────────────────────────────────────────
     const GITHUB_USER = 'GIRISHRV';
-    const FEATURED_REPOS = [
-      'HyperLink',
-      'Phishing-Detector-MVP',
-      'SongRecommender',
-      'communique',
-      'liveEditor',
-    ];
+    const FEATURED_REPOS = ['HyperLink', 'Phishing-Detector-MVP', 'SongRecommender', 'communique', 'liveEditor'];
+
+    // ... (rest of repo data stays same)
 
     const FALLBACK_DATA = [
       { name: 'HyperLink', html_url: 'https://github.com/GIRISHRV/HyperLink', description: 'Decentralized P2P engine supporting 10GB+ transfers via WebRTC and **Web Streams API**.', language: 'TypeScript', stargazers_count: 5 },
@@ -1833,7 +2058,6 @@ If you are reading this source code... Type 'xero' anywhere on the page.
     const ICONS = {
       'HyperLink': '🔗',
       'Phishing-Detector-MVP': '🛡️',
-      'stone_rag': '🪨',
       'SongRecommender': '🎵',
       'communique': '💬',
       'liveEditor': '⚡',
@@ -1983,8 +2207,30 @@ If you are reading this source code... Type 'xero' anywhere on the page.
     }
 
     window.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
       document.body.style.setProperty('--mouse-x', `${e.clientX}px`);
       document.body.style.setProperty('--mouse-y', `${e.clientY}px`);
+
+      // NEW: Calculate local mouse coordinates for the card glows
+      document.querySelectorAll('.bento-item, .proj').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+
+      if (isXeroMode) {
+        const trail = document.createElement('div');
+        trail.className = 'glitch-trail';
+        trail.style.left = e.clientX + 'px';
+        trail.style.top = e.clientY + 'px';
+        const chars = "#%&@*";
+        trail.innerText = chars[Math.floor(Math.random() * chars.length)];
+        document.body.appendChild(trail);
+        setTimeout(() => trail.remove(), 300);
+      }
     });
 
     window.addEventListener('mousedown', e => {
@@ -1994,7 +2240,35 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       spark.style.top = `${e.clientY}px`;
       document.body.appendChild(spark);
       setTimeout(() => spark.remove(), 600);
+
+      if (isXeroMode) {
+        document.body.classList.add('xero-tear');
+        setTimeout(() => document.body.classList.remove('xero-tear'), 50);
+      }
     });
+
+
+    // --- CLARITY XERO OVERDRIVE ---
+    function startXero() {
+      isXeroMode = true;
+      document.body.classList.add('xero-mode');
+      audio.currentTime = 0;
+      audio.play();
+      fadeInAudio();
+      startHUD();
+      createSubliminal();
+      
+      // Initialize Web Audio analyzer for EQ bars
+      if (!analyzer) {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const source = ctx.createMediaElementSource(audio);
+        analyzer = ctx.createAnalyser();
+        source.connect(analyzer);
+        analyzer.connect(ctx.destination);
+        analyzer.fftSize = 64;
+        dataArray = new Uint8Array(analyzer.frequencyBinCount);
+      }
+    }
 
     // Music Player Logic
     const musicBtn = document.getElementById('music-btn');
@@ -2002,9 +2276,20 @@ If you are reading this source code... Type 'xero' anywhere on the page.
     const trackText = document.getElementById('track-text');
 
     if (musicBtn && audio) {
-      audio.volume = 0.2;
+      audio.volume = 0; // Start at 0 for fade-in
 
-      // Music only starts via Xero Easter Egg now
+      function fadeInAudio(targetVol = 0.2, duration = 1500) {
+        audio.volume = 0;
+        audio.play();
+        const start = performance.now();
+        const tick = (now) => {
+          const elapsed = now - start;
+          const progress = Math.max(0, Math.min(elapsed / duration, 1));
+          audio.volume = progress * targetVol;
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
 
       musicBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -2051,10 +2336,20 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       }
 
       function drawMesh() {
+        if (isXeroMode && analyzer) {
+          analyzer.getByteFrequencyData(dataArray);
+          const bars = document.querySelectorAll('.eq-bar');
+          if (bars.length >= 3) {
+            bars[0].style.height = (dataArray[2] / 2) + '%';
+            bars[1].style.height = (dataArray[8] / 2) + '%';
+            bars[2].style.height = (dataArray[15] / 2) + '%';
+          }
+        }
+
         mctx.clearRect(0, 0, mWidth, mHeight);
 
         // Dynamic color based on Xero Mode state
-        mctx.fillStyle = isXeroMode ? '#ff0000' : '#4f8ef7';
+        mctx.fillStyle = isXeroMode ? '#ff0000' : '#d48c48';
 
         mNodes.forEach(node => {
           // THE OVERDRIVE PHYSICS: Multiply speed if Xero is active
@@ -2069,6 +2364,21 @@ If you are reading this source code... Type 'xero' anywhere on the page.
           mctx.arc(node.x, node.y, isXeroMode ? 2.5 : 1.5, 0, Math.PI * 2);
           mctx.fill();
 
+          // CURSOR MAGNETISM
+          const distToMouse = Math.hypot(node.x - mouseX, node.y - mouseY);
+          if (distToMouse < 150 && !isXeroMode) {
+            mctx.beginPath();
+            mctx.strokeStyle = `rgba(212, 140, 72, ${0.8 - distToMouse / 150})`;
+            mctx.lineWidth = 1;
+            mctx.moveTo(node.x, node.y);
+            mctx.lineTo(mouseX, mouseY);
+            mctx.stroke();
+
+            // Pull node toward mouse
+            node.x += (mouseX - node.x) * 0.01;
+            node.y += (mouseY - node.y) * 0.01;
+          }
+
           mNodes.forEach(peer => {
             const dist = Math.hypot(node.x - peer.x, node.y - peer.y);
             // Increase connection radius slightly during overdrive
@@ -2082,7 +2392,7 @@ If you are reading this source code... Type 'xero' anywhere on the page.
                 // The Jagged Line Glitch: Randomly offset the destination point
                 mctx.lineTo(peer.x + (Math.random() * 10 - 5), peer.y + (Math.random() * 10 - 5));
               } else {
-                mctx.strokeStyle = `rgba(79, 142, 247, ${1 - dist / 100})`;
+                mctx.strokeStyle = `rgba(212, 140, 72, ${1 - dist / 100})`;
                 mctx.lineWidth = 0.5;
                 mctx.moveTo(node.x, node.y);
                 mctx.lineTo(peer.x, peer.y);
@@ -2131,16 +2441,20 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       glitchInterval = setInterval(() => {
         if (!isXeroMode) return;
         const p = allParagraphs[Math.floor(Math.random() * allParagraphs.length)];
+        const originalHTML = p.innerHTML;
         const originalText = p.innerText;
         if (!originalText || originalText.length < 10) return;
+
         let scrambled = originalText.split('');
         const numGlitches = Math.floor(Math.random() * 5) + 5;
         for (let i = 0; i < numGlitches; i++) {
           const randIndex = Math.floor(Math.random() * scrambled.length);
           scrambled[randIndex] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
         }
+
+        // We set innerText to show the scramble, but restore innerHTML to keep tags
         p.innerText = scrambled.join('');
-        setTimeout(() => { p.innerText = originalText; }, Math.random() * 100 + 50);
+        setTimeout(() => { p.innerHTML = originalHTML; }, Math.random() * 100 + 50);
       }, 800);
     }
 
@@ -2149,8 +2463,8 @@ If you are reading this source code... Type 'xero' anywhere on the page.
     }
 
     // --- REAL-TIME AUDIO REACTIVITY ---
-    let audioCtx, analyser, dataArray;
     let isAudioWired = false;
+    let audioCtx; // Declare globally or in a scope accessible to wireAudio
 
     function wireAudio() {
       if (isAudioWired) return;
@@ -2158,19 +2472,21 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       if (!audioNode) return;
 
       try {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        analyser = audioCtx.createAnalyser();
-        const source = audioCtx.createMediaElementSource(audioNode);
-        source.connect(analyser);
-        analyser.connect(audioCtx.destination);
-        analyser.fftSize = 256;
-        dataArray = new Uint8Array(analyser.frequencyBinCount);
+        if (!analyzer) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const source = audioCtx.createMediaElementSource(audioNode); // Use audioNode here
+          analyzer = audioCtx.createAnalyser();
+          source.connect(analyzer);
+          analyzer.connect(audioCtx.destination);
+          analyzer.fftSize = 64; // Changed from 256
+          dataArray = new Uint8Array(analyzer.frequencyBinCount);
+        }
         isAudioWired = true;
 
         function renderPulse() {
           if (!isXeroMode) return;
           requestAnimationFrame(renderPulse);
-          analyser.getByteFrequencyData(dataArray);
+          analyzer.getByteFrequencyData(dataArray);
           let bass = (dataArray[0] + dataArray[1] + dataArray[2]) / 3;
           let scale = 1 + (bass / 255) * 0.3;
           let glow = (bass / 255) * 0.5;
@@ -2335,9 +2651,14 @@ If you are reading this source code... Type 'xero' anywhere on the page.
         root.style.setProperty('--green', '#ff0000');
         root.style.setProperty('--sans', '"Courier New", Courier, monospace');
 
-        // 2. Force the music to play
+        // 2. Force the music to play with fade-in
         if (audio && audio.paused) {
-          audio.play();
+          if (typeof fadeInAudio === 'function') {
+            fadeInAudio(0.2, 2000);
+          } else {
+            audio.volume = 0.2;
+            audio.play();
+          }
           if (musicBtn) musicBtn.classList.add('is-playing');
           if (trackText) trackText.innerText = "Linkin Park - Esaul";
         }
@@ -2408,42 +2729,14 @@ If you are reading this source code... Type 'xero' anywhere on the page.
       // Trigger when "exit", "quit", "close", or "end" is typed
       const exitWords = ['exit', 'quit', 'close', 'end'];
       if (exitWords.some(word => secretKeys.includes(word)) && isXeroMode) {
-        isXeroMode = false;
-        document.body.classList.remove('xero-mode');
-        // Restore the tab title
-        document.title = "Girish R V — Developer";
-        stopCorruption();
-        stopQuake();
-        clearInterval(errorInterval);
-        clearInterval(lyricInterval);
-        document.querySelectorAll('.xero-element').forEach(el => el.remove());
-
-        const navBrand = document.querySelector('.nav-brand');
-        if (navBrand && navBrand.dataset.original) {
-          navBrand.innerText = navBrand.dataset.original;
-        }
-
-        // 1. Reset the CSS Variables
-        const root = document.documentElement;
-        root.style.removeProperty('--bg');
-        root.style.removeProperty('--bg2');
-        root.style.removeProperty('--bg3');
-        root.style.removeProperty('--line');
-        root.style.removeProperty('--line2');
-        root.style.removeProperty('--text');
-        root.style.removeProperty('--muted');
-        root.style.removeProperty('--dim');
-        root.style.removeProperty('--accent');
-        root.style.removeProperty('--accent2');
-        root.style.removeProperty('--green');
-        root.style.removeProperty('--sans');
-
-        // 2. Stop the music
-        if (audio && !audio.paused) {
-          audio.pause();
-          if (musicBtn) musicBtn.classList.remove('is-playing');
-          if (trackText) trackText.innerText = "Paused";
-        }
+        // TRIGGER BSOD FIRST
+        document.getElementById('bsod').style.display = 'flex';
+        
+        // Wait 800ms for dramatic effect, then reload to clear everything
+        setTimeout(() => {
+          location.reload(); 
+        }, 800);
+        
         secretKeys = '';
       }
       if (secretKeys.length > 20) secretKeys = secretKeys.slice(-20);
@@ -2455,8 +2748,9 @@ If you are reading this source code... Type 'xero' anywhere on the page.
   -----------------
   Software Engineer
 `;
+
     console.log(`%c${ascii}\n%cHi there! 🚀 I'm Girish. Exploring the code? Let's collaborate!`,
-      'color:#4f8ef7; font-weight:bold; font-family:monospace; font-size:12px;',
+      'color:#d48c48; font-weight:bold; font-family:monospace; font-size:12px;',
       'color:#888; font-size:11px;');
   </script>
 </body>
